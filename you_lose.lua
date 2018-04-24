@@ -4,7 +4,10 @@
 -- Scene Template (Composer API)
 --
 -----------------------------------------------------------------------------------------
+--sounds
 
+local loseSound = audio.loadSound("Sounds/YouLose.mp3")
+local loseSoundChannel
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
@@ -49,6 +52,8 @@ function scene:create( event )
     bkg.y = display.contentCenterY
     bkg.width = display.contentWidth
     bkg.height = display.contentHeight
+
+    loseSoundChannel = audio.play(loseSound)
    
     -- Associating display objects with this scene 
     sceneGroup:insert( bkg )

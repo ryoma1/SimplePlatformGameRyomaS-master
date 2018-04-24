@@ -62,7 +62,7 @@ local uArrow
 local motionx = 0
 local SPEED = 5
 local LINEAR_VELOCITY = -100
-local GRAVITY = 7
+local GRAVITY = 5
 
 local leftW 
 local topW
@@ -81,13 +81,13 @@ local questionsAnswered = 0
 -- When right arrow is touched, move character right
 local function right (touch)
     motionx = SPEED
-    character.xScale = 1
+    character.xScale = 1.5
 end
 
 -- When up arrow is touched, add vertical so it can jump
 local function up (touch)
     if (character ~= nil) then
-        character:setLinearVelocity( 0, LINEAR_VELOCITY )
+        character:setLinearVelocity( 0.5, LINEAR_VELOCITY )
     end
 end
 
