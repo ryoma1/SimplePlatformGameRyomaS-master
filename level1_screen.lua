@@ -57,6 +57,7 @@ local heart2
 local numLives = 2
 
 local rArrow 
+local lArrow
 local uArrow
 
 local motionx = 0
@@ -71,6 +72,9 @@ local floor
 local ball1
 local ball2
 local theBall
+
+local stabSound = audio.loadSound( "Sounds/stab.mp3" )
+local stabSoundChannel
 
 local questionsAnswered = 0
 
@@ -107,11 +111,13 @@ end
 local function AddArrowEventListeners()
     rArrow:addEventListener("touch", right)
     uArrow:addEventListener("touch", up)
+    lArrow:addEventListener("touch", left)
 end
 
 local function RemoveArrowEventListeners()
     rArrow:removeEventListener("touch", right)
     uArrow:removeEventListener("touch", up)
+    lArrow:removeEventListener("touch", left)
 end
 
 local function AddRuntimeListeners()
@@ -181,6 +187,7 @@ local function onCollision( self, event )
             (event.target.myName == "spikes3") then
 
             -- add sound effect here
+            stabSoundChannel = audio.play(stabSound)
 
             -- remove runtime listeners that move the character
             RemoveArrowEventListeners()
@@ -451,11 +458,15 @@ function scene:create( event )
     rArrow = display.newImageRect("Images/RightArrowUnpressed.png", 100, 50)
     rArrow.x = display.contentWidth * 9.2 / 10
     rArrow.y = display.contentHeight * 9.5 / 10
-   
+
+    --Insert the left arrow
+    lArrow = display.newImageRect("Images/LeftArrowUnpressed.png", 100, 50)
+    lArrow.x = display.contentWidth * 7.2 / 10
+    lArrow.y = display.contentHeight * 9.5 / 10
     -- Insert objects into the scene group in order to ONLY be associated with this scene
     sceneGroup:insert( rArrow)
 
-    --Insert the left arrow
+    --Insert the up arrow
     uArrow = display.newImageRect("Images/UpArrowUnpressed.png", 50, 100)
     uArrow.x = display.contentWidth * 8.2 / 10
     uArrow.y = display.contentHeight * 8.5 / 10
