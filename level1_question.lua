@@ -48,6 +48,7 @@ local wrongAnswerText1
 local wrongAnswerText2
 local wrongAnswerText3
 
+
 local answerPosition = 1
 local bkg
 local cover
@@ -106,6 +107,17 @@ local function TouchListenerWrongAnswer2(touch)
     end 
 end
 
+--checking to see if the user pressed the right answer and bring them back to level 1
+local function TouchListenerWrongAnswer3(touch)
+    userAnswer = wrongText3.text
+    
+    if (touch.phase == "ended") then
+
+        BackToLevel1( )
+        
+    end 
+end
+
 
 --adding the event listeners 
 local function AddTextListeners ( )
@@ -151,8 +163,8 @@ end
 
 local function PositionAnswers()
 
-    --creating random start position in a cretain area
-    answerPosition = math.random(1,3)
+    --creating random start position in a specific place
+    answerPosition = math.random(1,4)
 
     if (answerPosition == 1) then
 
@@ -160,43 +172,58 @@ local function PositionAnswers()
         answerText.y = Y1
         
         wrongText1.x = X2
-        wrongText1.y = Y1
+        wrongText1.y = Y2
         
         wrongText2.x = X1
         wrongText2.y = Y2
 
         wrongText3.x = X2
-        wrongText3.y = Y2
+        wrongText3.y = Y1
 
         
     elseif (answerPosition == 2) then
-
-        answerText.x = X1
-        answerText.y = Y2
-            
-        wrongText1.x = X1
-        wrongText1.y = Y1
-            
-        wrongText2.x = X2
-        wrongText2.y = Y1
-
-        wrongText3.x = X2
-        wrongText3.y = Y2
-
-
-    elseif (answerPosition == 3) then
 
         answerText.x = X2
         answerText.y = Y1
             
         wrongText1.x = X1
-        wrongText1.y = Y2
+        wrongText1.y = Y1
+            
+        wrongText2.x = X2
+        wrongText2.y = Y2
+
+        wrongText3.x = X1
+        wrongText3.y = Y2
+
+
+    elseif (answerPosition == 3) then
+
+        answerText.x = X1
+        answerText.y = Y2
+            
+        wrongText1.x = X2
+        wrongText1.y = Y1
             
         wrongText2.x = X1
         wrongText2.y = Y1
 
         wrongText3.x = X2
         wrongText3.y = Y2
+
+    elseif (answerPosition == 4) then
+
+        answerText.x = X2
+        answerText.y = Y2
+            
+        wrongText1.x = X1
+        wrongText1.y = Y2
+            
+        wrongText2.x = X2
+        wrongText2.y = Y1
+
+        wrongText3.x = X1
+        wrongText3.y = Y1
+            
             
     end
 end
@@ -221,7 +248,7 @@ function scene:create( event )
     --making a cover rectangle to have the background fully bolcked where the question is
     cover = display.newRoundedRect(display.contentCenterX, display.contentCenterY, display.contentWidth*0.8, display.contentHeight*0.95, 50 )
     --setting its colour
-    cover:setFillColor(96/255, 96/255, 96/255)
+    cover:setFillColor(100/255, 255/255, 100/255)
 
     -- create the question text object
     questionText = display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 75)
